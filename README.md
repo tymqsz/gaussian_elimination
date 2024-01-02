@@ -7,4 +7,3 @@ and x is a vector that satisfies the system.
 
 # How it works
 Program uses gaussian elimination to solve the system.
-
