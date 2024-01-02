@@ -9,4 +9,7 @@
  */
 int eliminate(Matrix *mat, Matrix *b);
 
+int switch_rows(Matrix *mat, Matrix *b, int x, int y);
+
+void substract_row(Matrix *mat, Matrix *b, double q, int pivot_row, int row);
 #endif
