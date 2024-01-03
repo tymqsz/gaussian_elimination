@@ -1,9 +1,10 @@
 #include "gauss.h"
 #include<stdio.h>
 #include<stdlib.h>
+#include<math.h>
 
 #define eps 0.0000001
-
+#define inf 10000000000000000
 /**
  * Zwraca 0 - elimnacja zakonczona sukcesem
  * Zwraca 1 - macierz osobliwa - dzielenie przez 0
@@ -14,19 +15,14 @@ int eliminate(Matrix *mat, Matrix *b){
 	double q;
 
 	for(int c = 0; c < mat->c; c++){
-		pivot = mat->data[c][c];
-		pivot_row = c;
-		if(abs(pivot - 0) < eps){
-			while(pivot_row < mat->r && mat->data[pivot_row][c] == 0){
-				pivot_row++;
-			}
-			if(pivot_row >= mat->r) return 1;
-			
-			printf("switching rows\n");
+		pivot_row = best_row(mat, c);
+		if(pivot_row == -1) return 1;
+		else{
 			switch_rows(mat, b, c, pivot_row);
-			pivot = mat->data[c][c];
+			pivot_row = c;
 		}
 		
+		pivot = mat->data[pivot_row][c];
 		for(int r = c+1; r < mat->r; r++){
 			q = mat->data[r][c] / pivot;
 
@@ -63,4 +59,59 @@ int switch_rows(Matrix *mat, Matrix *b, int x, int y){
 	return 0;
 
 }
+
+int best_row(Matrix* mat, int col){
+	double max_piv = 0;
+	int best_row = -1;
+
+	for(int r = col; r < mat->r; r++){
+		if(fabs(mat->data[r][col]) > max_piv){
+			max_piv = mat->data[r][col];
+			best_row = r;
+		}
+	}
+
+	return best_row;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

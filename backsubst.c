@@ -14,7 +14,6 @@ int backsubst(Matrix *x, Matrix *mat, Matrix *b) {
 	double prev = 0.0;
 	for(int r = mat->r-1; r >= 0; r--){
 		if(fabs(mat->data[r][r] - 0) < eps){
-			printf("%lf eq 0\n", mat->data[r][r]);
 			return 1;
 		}
 		
