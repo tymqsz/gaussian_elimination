@@ -1,6 +1,7 @@
 #include "gauss.h"
 #include<stdio.h>
 #include<stdlib.h>
+#include<math.h>
 
 #define eps 0.0000001
 #define inf 10000000000000000
@@ -80,7 +81,7 @@ int* best_pivot(Matrix* mat, int p){
 
 	for(int r = p; r < mat->r; r++){
 		for(int c = p; c < mat->c; c++){
-			if(abs(mat->data[r][c]) > max_piv){
+			if(fabs(mat->data[r][c]) > max_piv){
 				max_piv = abs(mat->data[r][c]);
 				row = r;
 				col = c;
