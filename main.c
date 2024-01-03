@@ -33,10 +33,6 @@ int main(int argc, char ** argv) {
 
 	if (A == NULL) return -1;
 	if (b == NULL) return -2;
-	printf("default:\n");
-	printToScreen(A);
-	printToScreen(b);
-	printf("\n");
 	
 	int* x_order = malloc(sizeof(int)*A->c);
 	for(int i = 0; i < A->c; i++){
@@ -51,12 +47,7 @@ int main(int argc, char ** argv) {
 
 	x = createMatrix(b->r, 1);
 
-	printf("U:\n");
-	printToScreen(A);
-	printToScreen(b);
-	printf("\nsolution:\n");
-	
-
+	printf("solution:\n");
 	if (x != NULL) {
 		res = backsubst(x,A,b);
 		fix_x_order(x_order, x);

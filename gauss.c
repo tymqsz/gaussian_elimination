@@ -33,7 +33,6 @@ int eliminate(Matrix *mat, Matrix *b, int* x_order){
 }
 
 void substract_row(Matrix *mat, Matrix *b, double q, int pivot_row, int row){
-	printf("substracting row %d * %lf from row %d\n", pivot_row, q, row);
 	for(int i = 0; i < mat->c; i++){
 		mat->data[row][i] -= (mat->data[pivot_row][i]*q);
 	}
