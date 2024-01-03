@@ -1,5 +1,8 @@
 #include "gauss.h"
 #include<stdio.h>
+#include<stdlib.h>
+
+#define eps 0.0000001
 
 /**
  * Zwraca 0 - elimnacja zakonczona sukcesem
@@ -13,7 +16,7 @@ int eliminate(Matrix *mat, Matrix *b){
 	for(int c = 0; c < mat->c; c++){
 		pivot = mat->data[c][c];
 		pivot_row = c;
-		if(pivot == 0){
+		if(abs(pivot - 0) < eps){
 			while(pivot_row < mat->r && mat->data[pivot_row][c] == 0){
 				pivot_row++;
 			}

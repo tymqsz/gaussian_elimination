@@ -10,4 +10,5 @@
  */
 int  backsubst(Matrix *x, Matrix *mat, Matrix *b);
 
+double scalar_mul(Matrix *mat, Matrix *x, int row);
 #endif

@@ -21,23 +21,32 @@ int main(int argc, char ** argv) {
 
 	if (A == NULL) return -1;
 	if (b == NULL) return -2;
+	printf("default:\n");
 	printToScreen(A);
 	printToScreen(b);
+	printf("\n");
 
 	res = eliminate(A,b);
+	if(res == 1){
+		printf("macierz osobliwa, brak rozwiazania\n");
+		return 0;
+	}
+
 	x = createMatrix(b->r, 1);
 
-
+	printf("U:\n");
 	printToScreen(A);
 	printToScreen(b);
-	/* if (x != NULL) {
+	printf("\nsolution:\n");
+
+	if (x != NULL) {
 		res = backsubst(x,A,b);
 
 		printToScreen(x);
 	  freeMatrix(x);
 	} else {
 					fprintf(stderr,"Błąd! Nie mogłem utworzyć wektora wynikowego x.\n");
-	}*/
+	}
 
 	freeMatrix(A);
 	freeMatrix(b);
