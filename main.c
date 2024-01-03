@@ -5,6 +5,18 @@
 #include <stdio.h>
 #include<string.h>
 
+void fix_x_order(int* x_order, Matrix* x){
+	double* fixed_x = malloc(sizeof(double)*x->r);
+	
+	for(int i = 0; i < x->r; i++){
+		fixed_x[x_order[i]] = x->data[i][0];
+	}
+
+	for(int i = 0; i < x->r; i++){
+		x->data[i][0] = fixed_x[i];
+	}
+}
+
 int main(int argc, char ** argv) {
 	char* pa = malloc(100);
 	char* pb = malloc(100);
@@ -21,12 +33,13 @@ int main(int argc, char ** argv) {
 
 	if (A == NULL) return -1;
 	if (b == NULL) return -2;
-	printf("default:\n");
-	printToScreen(A);
-	printToScreen(b);
-	printf("\n");
+	
+	int* x_order = malloc(sizeof(int)*A->c);
+	for(int i = 0; i < A->c; i++){
+		x_order[i] = i;
+	}
 
-	res = eliminate(A,b);
+	res = eliminate(A,b, x_order);
 	if(res == 1){
 		printf("macierz osobliwa, brak rozwiazania\n");
 
@@ -37,20 +50,16 @@ int main(int argc, char ** argv) {
 
 	x = createMatrix(b->r, 1);
 
-	printf("U:\n");
-	printToScreen(A);
-	printToScreen(b);
-	printf("\nsolution:\n");
-
+	printf("solution:\n");
 	if (x != NULL) {
 		res = backsubst(x,A,b);
-
+		fix_x_order(x_order, x);
 		printToScreen(x);
 	  freeMatrix(x);
 	} else {
 					fprintf(stderr,"Błąd! Nie mogłem utworzyć wektora wynikowego x.\n");
 	}
-
+	
 	freeMatrix(A);
 	freeMatrix(b);
 

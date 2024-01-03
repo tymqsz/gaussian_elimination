@@ -13,9 +13,7 @@ int backsubst(Matrix *x, Matrix *mat, Matrix *b) {
 	
 	double prev = 0.0;
 	for(int r = mat->r-1; r >= 0; r--){
-		if(fabs(mat->data[r][r] - 0) < eps){
-			return 1;
-		}
+		if(fabs(mat->data[r][r] - 0)  < eps) return 1;
 		
 		prev = scalar_mul(mat, x, r) - mat->data[r][r]*x->data[r][0];
 		x->data[r][0] = (b->data[r][0]-prev)/mat->data[r][r];
