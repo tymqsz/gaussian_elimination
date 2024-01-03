@@ -29,6 +29,9 @@ int main(int argc, char ** argv) {
 	res = eliminate(A,b);
 	if(res == 1){
 		printf("macierz osobliwa, brak rozwiazania\n");
+
+	printf("U:\n");
+	printToScreen(A);
 		return 0;
 	}
 
