@@ -1,6 +1,7 @@
 #include "gauss.h"
 #include<stdio.h>
 #include<stdlib.h>
+#include<math.h>
 
 #define eps 0.0000001
 #define inf 10000000000000000
@@ -64,7 +65,7 @@ int best_row(Matrix* mat, int col){
 	int best_row = -1;
 
 	for(int r = col; r < mat->r; r++){
-		if(abs(mat->data[r][col]) > max_piv){
+		if(fabs(mat->data[r][col]) > max_piv){
 			max_piv = mat->data[r][col];
 			best_row = r;
 		}

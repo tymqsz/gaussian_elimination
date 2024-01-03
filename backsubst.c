@@ -1,6 +1,7 @@
 #include "backsubst.h"
 #include<stdio.h>
 #include<stdlib.h>
+#include<math.h>
 
 #define eps 0.000001
 
@@ -12,7 +13,10 @@ int backsubst(Matrix *x, Matrix *mat, Matrix *b) {
 	
 	double prev = 0.0;
 	for(int r = mat->r-1; r >= 0; r--){
-		if(abs(mat->data[r][r] - 0)  < eps) return 1;
+		if(fabs(mat->data[r][r] - 0)  < eps){
+			printf("%lf eq 0\n", mat->data[r][r]);
+			return 1;
+			}
 		
 		prev = scalar_mul(mat, x, r) - mat->data[r][r]*x->data[r][0];
 		x->data[r][0] = (b->data[r][0]-prev)/mat->data[r][r];
