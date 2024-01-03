@@ -16,8 +16,12 @@ int eliminate(Matrix *mat, Matrix *b){
 	for(int c = 0; c < mat->c; c++){
 		pivot_row = best_row(mat, c);
 		if(pivot_row == -1) return 1;
-		else switch_rows(mat, b, c, pivot_row);
-
+		else{
+			switch_rows(mat, b, c, pivot_row);
+			pivot_row = c;
+		}
+		
+		pivot = mat->data[pivot_row][c];
 		for(int r = c+1; r < mat->r; r++){
 			q = mat->data[r][c] / pivot;
 
